@@ -1,0 +1,19 @@
+{
+  "name": "homework",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/EddieObara/homework.git"
+  },
+  "author": "Eddie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EddieObara/homework/issues"
+  },
+  "homepage": "https://github.com/EddieObara/homework#readme",
+  "description": ""
+}
