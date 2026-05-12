@@ -43,8 +43,43 @@ nav{
     color:#0b6bff;
 }
 
-.logo span{
-    color:#00b894;
+.kenya{
+    background: linear-gradient(
+        120deg,
+        #000000,
+        #111111,
+        #ff0000,
+        #ffffff,
+        #008000,
+        #00c853,
+        #ff0000,
+        #000000
+    );
+
+    background-size: 300% 300%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: kenyaWave 5s ease infinite;
+
+    font-weight:700;
+}
+
+@keyframes kenyaWave{
+
+    0%{
+        background-position: 0% 50%;
+    }
+
+    50%{
+        background-position: 100% 50%;
+    }
+
+    100%{
+        background-position: 0% 50%;
+    }
+
 }
 
 nav ul{
@@ -355,7 +390,9 @@ footer ul li a{
 <!-- NAVBAR -->
 
 <nav>
-    <div class="logo">Homework<span>KE</span></div>
+    <div class="logo">
+        Homework<span class="kenya">KE</span>
+    </div>
 
     <ul>
         <li><a href="#">Home</a></li>
@@ -526,7 +563,7 @@ footer ul li a{
 
         <div>
             <div class="footer-logo">
-                HomeworkKE
+                Homework<span>KE</span>
             </div>
 
             <p>
