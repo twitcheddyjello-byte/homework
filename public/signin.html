@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HomeworkKE - Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+    135deg,
+    #0b6bff,
+    #00b894
+    );
+
+    overflow-x:hidden;
+    overflow-y:auto;
+
+    position:relative;
+
+    padding:40px 20px;
+
+    /* Hide scrollbar */
+
+    -ms-overflow-style:none;
+    scrollbar-width:none;
+}
+
+body::-webkit-scrollbar{
+    display:none;
+}
+
+.circle{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+}
+
+.circle1{
+    width:300px;
+    height:300px;
+    top:-100px;
+    left:-100px;
+}
+
+.circle2{
+    width:250px;
+    height:250px;
+    bottom:-80px;
+    right:-80px;
+}
+
+.circle3{
+    width:150px;
+    height:150px;
+    top:50%;
+    left:10%;
+}
+
+/* CONTAINER */
+
+.auth-container{
+
+    width:100%;
+    max-width:1100px;
+
+    min-height:650px;
+
+    background:white;
+
+    border-radius:35px;
+
+    overflow:hidden;
+
+    display:flex;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,0.2);
+
+    position:relative;
+}
+
+/* LEFT SIDE */
+
+.left-side{
+
+    flex:1;
+
+    background:
+    linear-gradient(
+    135deg,
+    #0b6bff,
+    #00b894
+    );
+
+    color:white;
+
+    padding:60px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    position:relative;
+}
+
+.logo{
+    position:absolute;
+    top:40px;
+    left:60px;
+
+    font-size:32px;
+    font-weight:700;
+}
+
+.kenya-flag{
+
+    display:inline-block;
+
+    background-image: url("/images/kenya-flag.png");
+
+    background-size: 220% 220%;
+    background-position: center;
+
+    color: transparent;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    font-weight:800;
+
+    animation:
+    kenyaFlow 6s ease infinite,
+    kenyaWave 3s ease-in-out infinite;
+}
+
+@keyframes kenyaFlow{
+
+    0%{
+        background-position: 0% 50%;
+    }
+
+    50%{
+        background-position: 100% 50%;
+    }
+
+    100%{
+        background-position: 0% 50%;
+    }
+
+}
+
+@keyframes kenyaWave{
+
+    0%{
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    25%{
+        transform: translateY(-2px) rotate(-1deg);
+    }
+
+    50%{
+        transform: translateY(1px) rotate(1deg);
+    }
+
+    75%{
+        transform: translateY(-1px) rotate(-0.5deg);
+    }
+
+    100%{
+        transform: translateY(0px) rotate(0deg);
+    }
+
+}
+
+.left-side h1{
+    font-size:55px;
+    line-height:1.1;
+    margin-bottom:25px;
+}
+
+.left-side p{
+    font-size:18px;
+    line-height:1.8;
+    max-width:450px;
+}
+
+/* RIGHT SIDE */
+
+.right-side{
+
+    flex:1;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:50px;
+}
+
+.form-box{
+    width:100%;
+    max-width:400px;
+}
+
+.form-box h2{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.form-box p{
+    color:#777;
+    margin-bottom:35px;
+}
+
+/* FORM */
+
+.input-group{
+    margin-bottom:20px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:500;
+}
+
+.input-group input{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    background:#f3f5f9;
+
+    border-radius:15px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:0.3s;
+}
+
+.input-group input:focus{
+    border:2px solid #0b6bff;
+    background:white;
+}
+
+/* BUTTON */
+
+.auth-btn{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #0b6bff,
+    #00b894
+    );
+
+    color:white;
+
+    font-size:16px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    margin-top:10px;
+
+    transition:0.3s;
+}
+
+.auth-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* DIVIDER */
+
+.divider{
+
+    text-align:center;
+
+    margin:25px 0;
+
+    color:#777;
+
+    position:relative;
+}
+
+.divider::before,
+.divider::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:40%;
+
+    height:1px;
+
+    background:#ddd;
+
+    top:50%;
+}
+
+.divider::before{
+    left:0;
+}
+
+.divider::after{
+    right:0;
+}
+
+/* GOOGLE BUTTON */
+
+.google-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#f3f5f9;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:0.3s;
+}
+
+.google-btn:hover{
+    background:#e8ebf2;
+}
+
+/* TOGGLE */
+
+.toggle-text{
+
+    margin-top:25px;
+
+    text-align:center;
+
+    color:#666;
+}
+
+.toggle-text span{
+    color:#0b6bff;
+    font-weight:600;
+    cursor:pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:950px){
+
+    .auth-container{
+        flex-direction:column;
+        margin:20px;
+    }
+
+    .left-side{
+        min-height:300px;
+    }
+
+    .left-side h1{
+        font-size:40px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .left-side{
+    padding:25px;
+    min-height:100px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    }
+
+    .right-side{
+        padding:30px;
+    }
+
+    .form-box h2{
+        font-size:30px;
+    }
+
+    .hero-description{
+    display:none;
+    }
+
+    .left-side h1{
+    font-size:34px;
+    margin-top:60px;
+    }
+
+    .left-side h1,
+    .hero-description{
+    display:none;
+    }
+
+    .logo{
+    position:relative;
+
+    top:auto;
+    left:auto;
+
+    font-size:28px;
+
+    text-align:center;
+    }
+
+}
+
+.toggle-text a{
+    text-decoration:none;
+}
+
+.mobile-logo-text{
+    transition:0.3s;
+}
+</style>
+</head>
+
+<body>
+
+<div class="circle circle1"></div>
+<div class="circle circle2"></div>
+<div class="circle circle3"></div>
+
+<div class="auth-container">
+
+    <!-- LEFT -->
+
+    <div class="left-side">
+
+        <div class="logo">
+            Homework<span class="kenya-flag">KE</span>
+        </div>
+
+        <h1 class="mobile-logo-text">
+            Learn Smarter From Home
+        </h1>
+
+        <p class="hero-description">
+            Connect with verified Kenyan teachers for live homework assistance, CBC support, and online tutoring sessions.
+        </p>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="right-side">
+
+        <div class="form-box">
+
+            <h2>Welcome Back</h2>
+
+            <p>
+                Login to continue learning.
+            </p>
+
+            <form>
+
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="Enter your email">
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter your password">
+                </div>
+                <button class="auth-btn" onclick="window.location.href='/parent.html'">
+                    Login
+                </button>
+                </form>
+
+                <div class="divider">
+                OR
+                </div>
+
+                <button class="google-btn">
+                Continue with Google
+                </button>
+
+            <div class="toggle-text">
+                Don't have an account?
+                <a href="/signup.html">
+    <span>Create Account</span>
+</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

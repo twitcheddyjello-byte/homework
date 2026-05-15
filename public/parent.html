@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HomeworkKE - Parent Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    overflow-x:hidden;
+}
+
+/* =========================
+SIDEBAR
+========================= */
+
+.sidebar{
+
+    width:280px;
+    height:100vh;
+
+    position:fixed;
+    left:0;
+    top:0;
+
+    background:
+    linear-gradient(
+    180deg,
+    #0b6bff,
+    #00b894
+    );
+
+    padding:30px 20px;
+
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+
+    z-index:1000;
+}
+
+/* OVERLAY */
+
+.overlay{
+
+    position:fixed;
+
+    width:100%;
+    height:100vh;
+
+    background:rgba(0,0,0,0.4);
+
+    top:0;
+    left:0;
+
+    z-index:999;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:0.3s;
+}
+
+/* MENU BUTTON */
+
+.menu-btn{
+
+    border:none;
+
+    width:45px;
+    height:45px;
+
+    border-radius:12px;
+
+    background:white;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.1);
+}
+
+.logo{
+    font-size:32px;
+    font-weight:700;
+    margin-bottom:50px;
+}
+
+.kenya-flag{
+
+    display:inline-block;
+
+    background-image: url("/images/kenya-flag.png");
+
+    background-size: 220% 220%;
+    background-position: center;
+
+    color: transparent;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    font-weight:800;
+
+    animation:
+    kenyaFlow 6s ease infinite,
+    kenyaWave 3s ease-in-out infinite;
+}
+
+@keyframes kenyaFlow{
+
+    0%{
+        background-position: 0% 50%;
+    }
+
+    50%{
+        background-position: 100% 50%;
+    }
+
+    100%{
+        background-position: 0% 50%;
+    }
+
+}
+
+@keyframes kenyaWave{
+
+    0%{
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    25%{
+        transform: translateY(-2px) rotate(-1deg);
+    }
+
+    50%{
+        transform: translateY(1px) rotate(1deg);
+    }
+
+    75%{
+        transform: translateY(-1px) rotate(-0.5deg);
+    }
+
+    100%{
+        transform: translateY(0px) rotate(0deg);
+    }
+
+}
+
+/* MENU */
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.menu a{
+
+    text-decoration:none;
+    color:white;
+
+    padding:15px 18px;
+
+    border-radius:15px;
+
+    transition:0.3s;
+
+    font-weight:500;
+}
+
+.menu a:hover,
+.menu .active{
+
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+}
+
+/* =========================
+MAIN CONTENT
+========================= */
+
+.main{
+
+    margin-left:280px;
+
+    padding:40px;
+}
+
+/* TOP BAR */
+
+.topbar{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:40px;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+}
+
+.welcome h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.welcome p{
+    color:#666;
+}
+
+.profile{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.avatar{
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+    135deg,
+    #0b6bff,
+    #00b894
+    );
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+    font-weight:700;
+    font-size:18px;
+}
+
+/* =========================
+STATS
+========================= */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+    margin-bottom:40px;
+}
+
+.stat-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.05);
+
+    transition:0.3s;
+}
+
+.stat-card:hover{
+    transform:translateY(-5px);
+}
+
+.stat-card h2{
+    font-size:38px;
+    color:#0b6bff;
+    margin-bottom:10px;
+}
+
+.stat-card p{
+    color:#666;
+}
+
+/* =========================
+SECTIONS
+========================= */
+
+.section{
+    margin-bottom:40px;
+}
+
+.section-title{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:25px;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+}
+
+.section-title h2{
+    font-size:28px;
+}
+
+/* CHILD CARDS */
+
+.children-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(300px,1fr));
+
+    gap:25px;
+}
+
+.child-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.05);
+}
+
+.child-top{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    margin-bottom:20px;
+}
+
+.child-avatar{
+
+    width:65px;
+    height:65px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+    135deg,
+    #0b6bff,
+    #00b894
+    );
+
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:22px;
+    font-weight:700;
+}
+
+.child-info h3{
+    margin-bottom:5px;
+}
+
+.child-info p{
+    color:#777;
+}
+
+.child-details{
+    margin-bottom:25px;
+}
+
+.child-details p{
+    margin-bottom:10px;
+    color:#555;
+}
+
+.view-btn{
+
+    width:100%;
+
+    border:none;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #0b6bff,
+    #00b894
+    );
+
+    color:white;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.view-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* =========================
+SESSIONS
+========================= */
+
+.sessions{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.05);
+}
+
+.session{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 0;
+
+    border-bottom:1px solid #eee;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+}
+
+.session:last-child{
+    border:none;
+}
+
+.session-left h3{
+    margin-bottom:5px;
+}
+
+.session-left p{
+    color:#777;
+}
+
+.join-btn{
+
+    border:none;
+
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    background:#0b6bff;
+
+    color:white;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+/* =========================
+QUICK ACTIONS
+========================= */
+
+.actions-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+}
+
+.action-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.05);
+}
+
+.action-card:hover{
+    transform:translateY(-5px);
+}
+
+.action-card h3{
+    margin-top:15px;
+}
+
+/* =========================
+MOBILE
+========================= */
+
+.mobile-topbar{
+    display:none;
+}
+
+@media(max-width:1024px){
+
+    .sidebar{
+
+        left:-300px;
+
+        transition:0.3s;
+    }
+
+    .sidebar.active{
+        left:0;
+    }
+
+    .overlay.active{
+        opacity:1;
+        visibility:visible;
+    }
+
+    .main{
+        margin-left:0;
+        padding:25px;
+    }
+
+    .mobile-topbar{
+
+        display:flex;
+
+        justify-content:space-between;
+        align-items:center;
+
+        margin-bottom:30px;
+    }
+
+    .welcome h1{
+        font-size:32px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .main{
+        padding:15px;
+    }
+
+    .welcome h1{
+        font-size:26px;
+    }
+
+    .topbar{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .section-title h2{
+        font-size:24px;
+    }
+
+}
+
+
+.settings-btn{
+
+    border:none;
+
+    width:45px;
+    height:45px;
+
+    border-radius:12px;
+
+    background:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.1);
+
+    transition:0.3s;
+}
+
+.settings-btn:hover{
+    transform:translateY(-2px);
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        Homework<span class="kenya-flag">KE</span>
+    </div>
+
+    <div class="menu">
+
+        <a href="#" class="active">Dashboard</a>
+        <a href="#">My Children</a>
+        <a href="#">Homework Help</a>
+        <a href="#">Tutors</a>
+        <a href="#">Upcoming Sessions</a>
+        <a href="#">Payments</a>
+        <a href="#">Messages</a>
+        <a href="#">Settings</a>
+        <a href="#">Logout</a>
+
+    </div>
+
+</div>
+
+<!-- OVERLAY -->
+
+<div class="overlay" onclick="toggleSidebar()"></div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+    <!-- MOBILE TOPBAR -->
+
+<div class="mobile-topbar">
+
+    <button class="menu-btn" onclick="toggleSidebar()">
+        ☰
+    </button>
+
+    <button class="settings-btn">
+        ⚙
+    </button>
+
+</div>
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <div class="welcome">
+
+            <h1>
+                Good Evening, Eddy 👋
+            </h1>
+
+            <p>
+                Here's what's happening with your children's learning today.
+            </p>
+
+        </div>
+
+        <div class="profile">
+
+            <div>
+                <strong>Eddy Obara</strong>
+                <p style="color:#777;">Parent Account</p>
+            </div>
+
+            <div class="avatar">
+                EO
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- STATS -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h2>2</h2>
+            <p>Active Children</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>5</h2>
+            <p>Upcoming Sessions</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>3</h2>
+            <p>Homework Pending</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>Premium</h2>
+            <p>Current Plan</p>
+        </div>
+
+    </div>
+
+    <!-- CHILDREN -->
+
+    <div class="section">
+
+        <div class="section-title">
+            <h2>My Children</h2>
+        </div>
+
+        <div class="children-grid">
+
+            <div class="child-card">
+
+                <div class="child-top">
+
+                    <div class="child-avatar">
+                        B
+                    </div>
+
+                    <div class="child-info">
+                        <h3>Brian Obara</h3>
+                        <p>Grade 5 Student</p>
+                    </div>
+
+                </div>
+
+                <div class="child-details">
+
+                    <p>📘 Mathematics Homework Pending</p>
+                    <p>🕒 Next Session: 6:00 PM</p>
+                    <p>👨‍🏫 Tutor: Mr. Kamau</p>
+
+                </div>
+
+                <button class="view-btn">
+                    View Progress
+                </button>
+
+            </div>
+
+            <div class="child-card">
+
+                <div class="child-top">
+
+                    <div class="child-avatar">
+                        S
+                    </div>
+
+                    <div class="child-info">
+                        <h3>Stacy Obara</h3>
+                        <p>Grade 8 Student</p>
+                    </div>
+
+                </div>
+
+                <div class="child-details">
+
+                    <p>📘 English Essay Submitted</p>
+                    <p>🕒 Next Session: 8:00 PM</p>
+                    <p>👩‍🏫 Tutor: Ms. Achieng</p>
+
+                </div>
+
+                <button class="view-btn">
+                    View Progress
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SESSIONS -->
+
+    <div class="section">
+
+        <div class="section-title">
+            <h2>Upcoming Sessions</h2>
+        </div>
+
+        <div class="sessions">
+
+            <div class="session">
+
+                <div class="session-left">
+                    <h3>Mathematics Tutoring</h3>
+                    <p>Today • 6:00 PM • Brian Obara</p>
+                </div>
+
+                <button class="join-btn">
+                    Join Session
+                </button>
+
+            </div>
+
+            <div class="session">
+
+                <div class="session-left">
+                    <h3>English Composition</h3>
+                    <p>Tomorrow • 8:00 PM • Stacy Obara</p>
+                </div>
+
+                <button class="join-btn">
+                    Join Session
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- QUICK ACTIONS -->
+
+    <div class="section">
+
+        <div class="section-title">
+            <h2>Quick Actions</h2>
+        </div>
+
+        <div class="actions-grid">
+
+            <div class="action-card">
+                <h3>📤 Upload Homework</h3>
+            </div>
+
+            <div class="action-card">
+                <h3>👨‍🏫 Find Tutor</h3>
+            </div>
+
+            <div class="action-card">
+                <h3>💳 Buy Subscription</h3>
+            </div>
+
+            <div class="action-card">
+                <h3>💬 Contact Teacher</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function toggleSidebar(){
+
+    document.querySelector(".sidebar")
+    .classList.toggle("active");
+
+    document.querySelector(".overlay")
+    .classList.toggle("active");
+
+}
+
+</script>
+
+</body>
+</html>
